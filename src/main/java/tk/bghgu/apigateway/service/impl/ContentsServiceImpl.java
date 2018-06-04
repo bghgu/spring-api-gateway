@@ -19,6 +19,9 @@ public class ContentsServiceImpl implements ContentsService {
     public void getContentsByContentId(final String content_id) {
         log.info("getContentsByContentId");
         log.info(content_id);
+        StringBuilder url = new StringBuilder();
+        url.append("127.0.0.1").append(":8080").append("/contents").append("/").append(content_id);
+
     }
 
     @Override
