@@ -1,10 +1,12 @@
 package tk.bghgu.apigateway.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tk.bghgu.apigateway.model.Contents;
+import tk.bghgu.apigateway.service.ContentsService;
 
 /**
  * Created by ds on 2018-06-05.
@@ -14,9 +16,13 @@ import tk.bghgu.apigateway.model.Contents;
 @RestController
 public class ContentsController {
 
+    @Autowired
+    private ContentsService contentsService;
+
     @GetMapping("contents/{content_id}")
     public ResponseEntity getContentsByContentId(@PathVariable final String content_id) {
         log.info(content_id);
+        contentsService.getContentsByContentId(content_id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
@@ -35,7 +41,7 @@ public class ContentsController {
     }
 
     @PostMapping("contents")
-    public ResponseEntity postContents(final Contents contents) {
+    public ResponseEntity postContents(@RequestBody Contents contents) {
         return new ResponseEntity(HttpStatus.OK);
     }
 
@@ -48,7 +54,7 @@ public class ContentsController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("contents/{content_id}")
+    @DeleteMapping("contents/{content_id}")
     public ResponseEntity deleteContentsByContentId(@PathVariable final String content_id) {
         log.info(content_id);
         return new ResponseEntity(HttpStatus.OK);
