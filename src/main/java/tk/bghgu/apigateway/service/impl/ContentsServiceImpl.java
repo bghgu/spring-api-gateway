@@ -1,37 +1,42 @@
 package tk.bghgu.apigateway.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.bghgu.apigateway.model.Contents;
-import tk.bghgu.apigateway.protocol.HttpProtocol;
+import tk.bghgu.apigateway.model.routing;
 import tk.bghgu.apigateway.service.ContentsService;
 import tk.bghgu.apigateway.utils.URI;
 
+import static tk.bghgu.apigateway.model.Method.GET;
+import static tk.bghgu.apigateway.model.Protocol.HTTP;
+import static tk.bghgu.apigateway.model.Protocol.TCP;
+
 /**
  * Created by ds on 2018-06-05.
+ */
+
+/**
+ * 라우팅
  */
 
 @Slf4j
 @Service
 public class ContentsServiceImpl implements ContentsService {
 
-    @Autowired
-    private HttpProtocol httpProtocol;
-
     @Override
     public void getContentsByContentId(final String content_id) {
-        log.info("getContentsByContentId");
-        log.info(content_id);
-        String uri = URI.HTTP + URI.CONTENTS_BASE_URL + ":" + URI.BASE_PORT + "/contents" + "/" + content_id;
-        System.out.println(uri);
-        //httpProtocol.get(url.toString());
+        // HTTP
+        // 127.0.0.1:8080/contents/{content_id}
+        // GET
+        routing routing = new routing("127.0.0.1", 8080, "/contents", HTTP, GET);
     }
 
     @Override
     public void getContentsByUserId(final String user_id) {
-        log.info("getContentsByUserId");
-        log.info(user_id);
+        // TCP
+        // 127.0.0.1:5000
+        // GET
+        routing routing = new routing("127.0.0.1", 5000, TCP, GET);
     }
 
     @Override
