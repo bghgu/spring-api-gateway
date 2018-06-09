@@ -9,7 +9,9 @@ import lombok.Data;
 @Data
 public class Contents {
 
+    private String content_id;
     private String title;
     private String user_id;
     private String date;
+
 }

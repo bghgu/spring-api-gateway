@@ -1,5 +1,7 @@
 package tk.bghgu.apigateway.protocol.lib;
 
+import tk.bghgu.apigateway.protocol.lib.PagingAndSoringProtocol;
+
 import java.io.Serializable;
 
 /**
